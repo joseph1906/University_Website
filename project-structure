@@ -1,0 +1,112 @@
+university-lms/
+│
+├── config/
+│   ├── database.php          # Database connection configuration
+│   ├── constants.php          # Application constants
+│   └── settings.php           # General settings
+│
+├── assets/
+│   ├── css/
+│   │   ├── main.css          # Main stylesheet
+│   │   ├── dashboard.css     # Dashboard styles
+│   │   ├── courses.css       # Course-related styles
+│   │   └── responsive.css    # Mobile responsive styles
+│   │
+│   ├── js/
+│   │   ├── main.js           # Main JavaScript file
+│   │   ├── validation.js     # Form validation
+│   │   └── ajax-handler.js   # AJAX requests
+│   │
+│   ├── images/
+│   │   ├── logo/
+│   │   ├── avatars/
+│   │   └── icons/
+│   │
+│   └── uploads/
+│       ├── course-materials/
+│       ├── assignments/
+│       ├── profile-photos/
+│       └── documents/
+│
+├── includes/
+│   ├── header.php            # Common header
+│   ├── footer.php            # Common footer
+│   ├── sidebar.php           # Navigation sidebar
+│   ├── functions.php         # Utility functions
+│   └── session.php           # Session management
+│
+├── admin/
+│   ├── index.php             # Admin dashboard
+│   ├── manage-users.php      # User management
+│   ├── manage-courses.php    # Course management
+│   ├── manage-departments.php # Department management
+│   ├── manage-semesters.php  # Semester/academic year
+│   ├── reports.php           # System reports
+│   └── settings.php          # System settings
+│
+├── lecturer/
+│   ├── index.php             # Lecturer dashboard
+│   ├── my-courses.php        # Assigned courses
+│   ├── course-materials.php  # Upload materials
+│   ├── assignments.php       # Create/manage assignments
+│   ├── grading.php           # Grade submissions
+│   ├── attendance.php        # Mark attendance
+│   └── students.php          # View enrolled students
+│
+├── student/
+│   ├── index.php             # Student dashboard
+│   ├── my-courses.php        # Enrolled courses
+│   ├── course-content.php    # View course materials
+│   ├── assignments.php       # View/submit assignments
+│   ├── grades.php            # View grades
+│   ├── attendance.php        # View attendance
+│   └── profile.php           # Student profile
+│
+├── modules/
+│   ├── auth/
+│   │   ├── login.php         # Login page
+│   │   ├── logout.php        # Logout handler
+│   │   ├── register.php      # Registration (if applicable)
+│   │   └── forgot-password.php
+│   │
+│   ├── courses/
+│   │   ├── view-course.php   # Course details
+│   │   ├── enroll.php        # Course enrollment
+│   │   └── course-list.php   # Browse courses
+│   │
+│   ├── assignments/
+│   │   ├── submit.php        # Submit assignment
+│   │   ├── view.php          # View assignment
+│   │   └── download.php      # Download materials
+│   │
+│   ├── announcements/
+│   │   ├── create.php        # Create announcement
+│   │   ├── view.php          # View announcements
+│   │   └── list.php          # List all announcements
+│   │
+│   └── messages/
+│       ├── inbox.php         # Message inbox
+│       ├── compose.php       # Compose message
+│       └── view.php          # View message
+│
+├── api/
+│   ├── auth.php              # Authentication API
+│   ├── courses.php           # Course API
+│   ├── assignments.php       # Assignment API
+│   └── notifications.php     # Notifications API
+│
+├── database/
+│   ├── lms_schema.sql        # Database schema
+│   └── sample_data.sql       # Sample data for testing
+│
+├── docs/
+│   ├── installation.md       # Installation guide
+│   ├── user-manual.md        # User documentation
+│   └── api-docs.md           # API documentation
+│
+├── vendor/                    # Third-party libraries
+│   └── (PHPMailer, TCPDF, etc.)
+│
+├── index.php                  # Main entry point
+├── .htaccess                  # Apache configuration
+└── README.md                  # Project documentation
