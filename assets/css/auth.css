@@ -1,0 +1,92 @@
+/* Main stylesheet */
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap);
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', serif;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f0f0f0;
+}
+.container{
+    position: relative;
+    width: 600px;
+    background: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+}
+.container h1{
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+.form-box{
+    width: 100%;
+}
+.form-box form{
+    display: flex;
+    flex-direction: column;
+}
+.form-box form .input-box{
+    position: relative;
+    margin-bottom: 20px;
+}
+.form-box form .input-box .icon{
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #999;
+}
+.form-box form .input-box label{
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #333;
+}
+.form-box form .input-box input{
+    width: 100%;
+    padding: 10px 10px 10px 35px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.form-box form .remember-forgot{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.form-box form .remember-forgot label{
+    font-size: 14px;
+    color: #333;
+}
+.form-box form .remember-forgot a{
+    font-size: 14px;
+    color: #007BFF;
+    text-decoration: none;
+}
+.form-box form .remember-forgot a:hover{
+    text-decoration: underline;
+}
+.form-box form .btn{
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #007BFF;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+.form-box form .btn:hover{
+    background: #0056b3;
+}
