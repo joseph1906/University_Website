@@ -38,13 +38,26 @@ body{
     position: relative;
     margin-bottom: 20px;
 }
+/* Label row: icon beside label */
+.form-box form .input-box .label-row{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+}
 .form-box form .input-box .icon{
-    position: absolute;
-    top: 50%;
-    left: 10px;
-    transform: translateY(-50%);
-    font-size: 18px;
-    color: #999;
+    position: static;
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #f7f7f7;
+    border-radius: 6px;
+    color: #6c757d;
+    font-size: 16px;
+    transition: background .18s ease, color .18s ease, transform .12s ease;
+    pointer-events: none;
 }
 .form-box form .input-box label{
     display: block;
@@ -55,10 +68,29 @@ body{
 }
 .form-box form .input-box input{
     width: 100%;
-    padding: 10px 10px 10px 35px;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 14px;
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+/* Focus state: highlight icon and input when user focuses inside the input-box */
+.form-box form .input-box:focus-within input{
+    border-color: #2c3e50;
+    box-shadow: 0 4px 12px rgba(44,62,80,0.06);
+}
+.form-box form .input-box:focus-within .icon{
+    color: #2c3e50;
+    background: #eef3f8;
+    transform: scale(1.02);
+}
+
+/* Ensure ion-icon scales properly inside our icon box */
+.form-box form .input-box .icon ion-icon{
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
 }
 .form-box form .remember-forgot{
     display: flex;
@@ -82,7 +114,7 @@ body{
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background: #007BFF;
+    background: #1e3a8a;
     color: #fff;
     font-size: 16px;
     cursor: pointer;

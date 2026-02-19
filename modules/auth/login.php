@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/css/auth.css">
     <title>login page</title>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
     <div class="container">
@@ -17,15 +19,18 @@
             <form action="">
                 
                 <div class="input-box">
-                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
-                    <label>Email/Reg Number</label>
+                    <div class="label-row">
+                        <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                        <label>Email/Reg Number</label>
+                    </div>
                     <input type="email" name="email" placeholder="Enter your email" required>
                 </div>
                 <div class="input-box"> 
-                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-                    <label>Password</label>
+                    <div class="label-row">
+                        <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                        <label>Password</label>
+                    </div>
                     <input type="password" name="password" placeholder="Enter your password" required>
-                    
                 </div>
                 <div class="remember-forgot">
                     <a href="#">Forgot password?</a>
