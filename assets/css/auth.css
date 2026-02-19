@@ -1,0 +1,124 @@
+/* Main stylesheet */
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap);
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', serif;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f0f0f0;
+}
+.container{
+    position: relative;
+    width: 600px;
+    background: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+}
+.container h1{
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+.form-box{
+    width: 100%;
+}
+.form-box form{
+    display: flex;
+    flex-direction: column;
+}
+.form-box form .input-box{
+    position: relative;
+    margin-bottom: 20px;
+}
+/* Label row: icon beside label */
+.form-box form .input-box .label-row{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+.form-box form .input-box .icon{
+    position: static;
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #f7f7f7;
+    border-radius: 6px;
+    color: #6c757d;
+    font-size: 16px;
+    transition: background .18s ease, color .18s ease, transform .12s ease;
+    pointer-events: none;
+}
+.form-box form .input-box label{
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #333;
+}
+.form-box form .input-box input{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+/* Focus state: highlight icon and input when user focuses inside the input-box */
+.form-box form .input-box:focus-within input{
+    border-color: #2c3e50;
+    box-shadow: 0 4px 12px rgba(44,62,80,0.06);
+}
+.form-box form .input-box:focus-within .icon{
+    color: #2c3e50;
+    background: #eef3f8;
+    transform: scale(1.02);
+}
+
+/* Ensure ion-icon scales properly inside our icon box */
+.form-box form .input-box .icon ion-icon{
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+}
+.form-box form .remember-forgot{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.form-box form .remember-forgot label{
+    font-size: 14px;
+    color: #333;
+}
+.form-box form .remember-forgot a{
+    font-size: 14px;
+    color: #007BFF;
+    text-decoration: none;
+}
+.form-box form .remember-forgot a:hover{
+    text-decoration: underline;
+}
+.form-box form .btn{
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #1e3a8a;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+.form-box form .btn:hover{
+    background: #0056b3;
+}
