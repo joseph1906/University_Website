@@ -3,8 +3,11 @@
     <head>
         <link rel="stylesheet" href="CourseWork.css"/>
         <title>Coursework</title>
+         <style>
+        </style>
     </head>
     <body>
+        <div class="content">
         <div class="head">
                 <div class="logo"><h2>University Name</h2></div>
                 <ul>
@@ -17,5 +20,20 @@
                     <li><a><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABwklEQVR4AcyUSytFURiGNwZGbuUSpQzMDJQMxAy55PIHFDNTCTFQlBSFZCqK/AK3EvILJEYMDEzEzNiE5+Xb2medffbanTrl9D37/c631rfes/Y6excHBf78G4MRNnoLH4byIXJvpNnBPKscQxtUGMpPyWcgMXwG/XSvwRtMQL2hXLUNvvdAzvAZzFrnFHoIWlQoV41SkLgLn0G7VoBzcOPaCq2mseIz+LSuUtM4KYkrhjWfwb1N7DaNSnjv76JFN/cZbFrDDjoGtaCDHkdVQwIdtDQWn8EFXTrEGvQI3uEVDqAapiE8C9Ls8BmoY4tLC+zCCzyDctW2yRMjjYEWeOIyCU3QDMpVI02OJINKWldAt0m35os8imoaW6ZeBrGRy2CQ2Y+wCH2gw0UyQjWNLVHV3F40K+IM9BLTg1XH7BPQw1aFFjmoprEz6g1wCQOQEa6BmvZsxjo6Cnpz6i1KmhGqaWyYavh33icvh79wDfQS0y+/YcYCpI05Jl5B+IyQ/oZr0PlbDlZN04oOP9xFV7TJNeiwQW3d0tTyYDMTDRptku6vpalFT7gmh2soD9wdhP+Un8E8Lln9rkEeaya3FNzgGwAA///0Oi4FAAAABklEQVQDAPDsRjFnAby0AAAAAElFTkSuQmCC"/></a></li>
                 </div>
             </div>
+                <div class="Task">
+                    <table>
+                        <thead>
+                            <th colspan="3"></th>
+                            <th><button class="button">New Task</button></th>
+                        </thead>
+                        <tr>
+                            <td>Task number</td>
+                            <td>38</td>
+                            <td>Start Date</td>
+                            <td>End Date</td>
+                        </tr>
+                    </table>
+                </div>
+        </div>
     </body>
 </html>

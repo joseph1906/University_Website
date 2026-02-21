@@ -22,12 +22,12 @@
     <table>
         <thead>
             <tr>
-                <th colspan="5">Student Grade</th>
+                <th colspan="5" class="student">Student Grade</th>
             </tr>
         </thead>
         <tbody>
-            <tr class="student">
-                <td>Image</td>
+            <tr>
+                <td><img src="1.jpg" alt="" class="image"></td>
                 <td>Reg_Number</td>
                 <td>Student Name</td>
                 <td>Task Number One</td>
