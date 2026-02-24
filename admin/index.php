@@ -29,18 +29,95 @@
 
         </header>
         <aside class="sidebar">
-            <ul>
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Users</a></li>
-                <li><a href="#">Settings</a></li>
-                <li><a href="#">Logout</a></li>
+            <div class="sidebar-title">
+                <div class="sidebar-brand">
+                    <span class="material-symbols-outlined">school</span> LMS
+                </div>
+                <span class="material-symbols-outlined" onclick="closeSidebar()">close</span>
+            </div>
+            <ul class="sidebar-list">
+                <li class="sidebar-list-item">
+                    <span class="material-symbols-outlined">dashboard</span> Dashboard
+                </li>
+                <li class="sidebar-list-item" onclick="location.href='../modules/students/register.html'">
+                    <span class="material-symbols-outlined">people</span> Register Student
+                </li>
+                <li class="sidebar-list-item" onclick="location.href='../modules/students/list.html'">
+                    <span class="material-symbols-outlined">view_list</span> View Students
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-symbols-outlined">notifications</span> Notifications
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-symbols-outlined">group</span> Staff Members
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-symbols-outlined">view_list</span> View Staff Members
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-symbols-outlined">network_node</span> Departments
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-symbols-outlined">book</span> Courses units
+                </li>
             </ul>
         </aside>
         <main class="main-content">
-            <h2>Welcome, Admin!</h2>
-            <p>This is your dashboard where you can manage the university website.</p>
+            <div class="main-title">
+                <h2>DASHBOARD</h2>
+            </div>
+            <div class="main-cards">
+                <div class="card">
+                    <div class="card-inner">
+                        <h3>Students</h3>
+                        <!-- <img src="../assets/image/icon/student-icon-32.svg" alt=""> -->
+                        <span class="material-symbols-outlined">school</span>
+                    </div>
+                    <h1>249</h1>
+                    <div class="stat-change positive">↑ +12% from last month</div>
+                </div>
+                <div class="card">
+                    <div class="card-inner">
+                        <h3>Lecturers</h3>
+                        <!-- <img src="../assets/image/icon/lecturer-icon-32.svg" alt=""> -->
+                        <span class="material-symbols-outlined">podium</span>
+                    </div>
+                    <h1>249</h1>
+                    <div class="stat-change positive">↑ +3 this semester</div>
+                </div>
+                <div class="card">
+                    <div class="card-inner">
+                        <h3>Dean</h3>
+                        <!-- <img src="../assets/image/icon/leadership-icon-32 (2).svg" alt=""> -->
+                        <span class="material-symbols-outlined">manage_accounts</span>
+                    </div>
+                    <h1>249</h1>
+                    <div class="stat-change negative">↓ -1 from last year</div>
+                </div>
+                <div class="card">
+                    <div class="card-inner">
+                        <h3>Active Courses</h3>
+                        <!-- <img src="../assets/image/icon/admin-icon-32.svg" alt=""> -->
+                        <span class="material-symbols-outlined">library_books</span>
+                    </div>
+                    <h1>142</h1>
+                    <div class="stat-change neutral">→ Same as last term</div>
+                </div>
+            </div>
+            <div class="charts">
+                <div class="charts-card">
+                    <h2 class="chart-title">Student Enrollment</h2>
+                    <div id="bar-chart"></div>
+                </div>
+                <div class="charts-card">
+                    <h2 class="chart-title">students by department</h2>
+                    <div id="bar-chart-2"></div>
+                </div>
+            </div>
         </main>
     </div>
-    <script src="../../assets/js/admin.js"></script>
+    <!-- apexchart -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/5.3.5/apexcharts.min.js"></script>
+    <script src="../assets/js/admin.js"></script>
 </body>
 </html>

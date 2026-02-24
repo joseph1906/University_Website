@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Graduation cap flat board -->
+  <polygon points="16,3 31,9 16,15 1,9"/>
+  <!-- Cap drape left and right sides -->
+  <path d="M7,11.5 L7,18 Q16,22.5 25,18 L25,11.5"/>
+  <!-- Tassel cord -->
+  <line x1="31" y1="9" x2="31" y2="18"/>
+  <!-- Tassel end -->
+  <ellipse cx="31" cy="19.5" rx="1.5" ry="2"/>
+
+  <!-- Body / shoulders -->
+  <path d="M2,32 Q2,25 9,23 Q12,22 16,22 Q20,22 23,23 Q30,25 30,32"/>
+</svg>
