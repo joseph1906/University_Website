@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Students - Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/admin.css">
+    <style>
+        .content-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px -2px rgba(0, 0, 0, 0.25);
+            border-left: 5px solid #2962ff;
+        }
+
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .content-header h2 {
+            color: #333;
+            margin: 0;
+        }
+
+        .btn-add {
+            background-color: #2962ff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-add:hover {
+            background-color: #1e44b0;
+            box-shadow: 0 4px 12px rgba(41, 98, 255, 0.4);
+        }
+
+        .student-count {
+            background-color: #f0f4ff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            color: #2962ff;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th {
+            background-color: #f5f5f5;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 2px solid #ddd;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            color: #333;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-edit, .btn-delete {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-edit {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .btn-edit:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-delete {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        .btn-delete:hover {
+            background-color: #c82333;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .empty-state .icon {
+            font-size: 48px;
+            color: #ddd;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .department-section {
+            margin-bottom: 50px;
+        }
+
+        .department-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #2962ff 0%, #1e44b0 100%);
+            color: #fff;
+            border-radius: 6px 6px 0 0;
+            margin-bottom: 0;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .department-header .material-symbols-outlined {
+            font-size: 24px;
+            color: #fff;
+        }
+
+        .department-count {
+            background-color: #e8eef9;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #2962ff;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .department-table {
+            margin-bottom: 30px;
+        }
+
+        .department-table table {
+            margin-top: 0;
+            border-radius: 0 0 6px 6px;
+            overflow: hidden;
+        }
+
+        @media (max-width: 600px) {
+            .content-container {
+                padding: 20px;
+                margin: 20px;
+            }
+
+            .content-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .btn-add {
+                width: 100%;
+                justify-content: center;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-container">
+        <header class="header">
+            <div class="menu-icon" onclick="openSidebar()">
+                <span class="material-symbols-outlined">menu</span>
+            </div>
+            <div class="header-left">
+                <span class="material-symbols-outlined">search</span>
+            </div>
+            <div class="header-right">
+                <span class="material-symbols-outlined">notifications</span>
+                <span class="material-symbols-outlined">mail</span>
+                <span class="material-symbols-outlined">account_circle</span>
+            </div>
+        </header>
+
+        <aside class="sidebar">
+            <div class="sidebar-title">
+                <div class="sidebar-brand">
+                    <span class="material-symbols-outlined">school</span> LMS
+                </div>
+                <span class="material-symbols-outlined" onclick="closeSidebar()">close</span>
+            </div>
+            <ul class="sidebar-list">
+                <li class="sidebar-list-item" onclick="location.href='../../admin/index.php'">
+                    <span class="material-symbols-outlined">dashboard</span> Dashboard
+                </li>
+                <li class="sidebar-list-item" onclick="location.href='register.html'">
+                    <span class="material-symbols-outlined">people</span> Register Student
+                </li>
+                <li class="sidebar-list-item" onclick="location.href='list.html'">
+                    <span class="material-symbols-outlined">view_list</span> View Students
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-symbols-outlined">notifications</span> Notifications
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-symbols-outlined">group</span> Staff Members
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-symbols-outlined">view_list</span> View Staff Members
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-symbols-outlined">network_node</span> Departments
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-symbols-outlined">book</span> Courses units
+                </li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div class="content-container">
+                <div class="content-header">
+                    <h2>Registered Students</h2>
+                    <a href="register.html" class="btn-add">
+                        <span class="material-symbols-outlined">add</span> Add New Student
+                    </a>
+                </div>
+
+                <div class="student-count">Total Students: 5</div>
+
+                <!-- Computer Science Department -->
+                <div class="department-section">
+                    <div class="department-header">
+                        <span class="material-symbols-outlined">computer</span>
+                        <span>Computer Science</span>
+                        <span class="department-count">1 Student</span>
+                    </div>
+                    <div class="table-wrapper department-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Student Number</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Registered</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>STU001</td>
+                                    <td>John Doe</td>
+                                    <td>john.doe@university.edu</td>
+                                    <td>+1 234 567 8900</td>
+                                    <td>Feb 15, 2026</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-edit">Edit</button>
+                                            <button class="btn-delete">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Business Department -->
+                <div class="department-section">
+                    <div class="department-header">
+                        <span class="material-symbols-outlined">trending_up</span>
+                        <span>Business</span>
+                        <span class="department-count">1 Student</span>
+                    </div>
+                    <div class="table-wrapper department-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Student Number</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Registered</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>STU002</td>
+                                    <td>Jane Smith</td>
+                                    <td>jane.smith@university.edu</td>
+                                    <td>+1 234 567 8901</td>
+                                    <td>Feb 16, 2026</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-edit">Edit</button>
+                                            <button class="btn-delete">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Engineering Department -->
+                <div class="department-section">
+                    <div class="department-header">
+                        <span class="material-symbols-outlined">construction</span>
+                        <span>Engineering</span>
+                        <span class="department-count">1 Student</span>
+                    </div>
+                    <div class="table-wrapper department-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Student Number</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Registered</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>STU003</td>
+                                    <td>Michael Johnson</td>
+                                    <td>michael.johnson@university.edu</td>
+                                    <td>+1 234 567 8902</td>
+                                    <td>Feb 17, 2026</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-edit">Edit</button>
+                                            <button class="btn-delete">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Medicine Department -->
+                <div class="department-section">
+                    <div class="department-header">
+                        <span class="material-symbols-outlined">health_and_safety</span>
+                        <span>Medicine</span>
+                        <span class="department-count">1 Student</span>
+                    </div>
+                    <div class="table-wrapper department-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Student Number</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Registered</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>STU004</td>
+                                    <td>Sarah Williams</td>
+                                    <td>sarah.williams@university.edu</td>
+                                    <td>+1 234 567 8903</td>
+                                    <td>Feb 18, 2026</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-edit">Edit</button>
+                                            <button class="btn-delete">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Law Department -->
+                <div class="department-section">
+                    <div class="department-header">
+                        <span class="material-symbols-outlined">gavel</span>
+                        <span>Law</span>
+                        <span class="department-count">1 Student</span>
+                    </div>
+                    <div class="table-wrapper department-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Student Number</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Registered</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>STU005</td>
+                                    <td>David Brown</td>
+                                    <td>david.brown@university.edu</td>
+                                    <td>+1 234 567 8904</td>
+                                    <td>Feb 19, 2026</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-edit">Edit</button>
+                                            <button class="btn-delete">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../../assets/js/admin.js"></script>
+</body>
+</html>
