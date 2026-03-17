@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#2962FF">
+    <meta name="description" content="View Staff Members - University LMS">
+    <title>View Staff - Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/admin.css">
+    <style>
+        .content-container {
+            max-width: 1400px;
+            margin: 32px auto;
+            background: var(--surface-1);
+            padding: 32px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+        }
+
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .header-title h2 {
+            color: var(--text-primary);
+            margin: 0;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .header-title .material-symbols-outlined {
+            font-size: 32px;
+            color: var(--primary);
+        }
+
+        .btn-add {
+            background: var(--primary);
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-add:hover {
+            background: var(--primary-dark);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .staff-count {
+            background: linear-gradient(135deg, var(--primary-light) 0%, #F0F4FF 100%);
+            padding: 16px 20px;
+            border-radius: 8px;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 28px;
+            border-left: 4px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .staff-count .material-symbols-outlined {
+            font-size: 24px;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: 8px;
+            margin-top: 16px;
+            margin-bottom: 24px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: linear-gradient(135deg, var(--primary) 0%, #1D47B6 100%);
+            color: #fff;
+        }
+
+        th {
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        td {
+            padding: 16px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+
+        tbody tr {
+            transition: all 0.3s ease;
+            background: var(--surface-1);
+        }
+
+        tbody tr:hover {
+            background: var(--surface-2);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn-edit, .btn-delete, .btn-view {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-view {
+            background: #00897B;
+            color: #fff;
+        }
+
+        .btn-view:hover {
+            background: #00695C;
+            box-shadow: 0 4px 8px rgba(0, 137, 123, 0.3);
+        }
+
+        .btn-edit {
+            background: #007bff;
+            color: #fff;
+        }
+
+        .btn-edit:hover {
+            background: #0056b3;
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+        }
+
+        .btn-delete {
+            background: var(--error);
+            color: #fff;
+        }
+
+        .btn-delete:hover {
+            background: #B71C1C;
+            box-shadow: 0 4px 8px rgba(211, 47, 47, 0.3);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-tertiary);
+        }
+
+        .empty-state .icon {
+            font-size: 64px;
+            color: var(--border-color);
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .empty-state p {
+            font-size: 16px;
+            margin-bottom: 24px;
+        }
+
+        .department-section {
+            margin-bottom: 40px;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .department-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 24px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: #fff;
+            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+        }
+
+        .department-header .material-symbols-outlined {
+            font-size: 28px;
+            color: #fff;
+        }
+
+        .department-count {
+            background: rgba(255, 255, 255, 0.25);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #fff;
+            font-weight: 600;
+            margin-left: auto;
+            backdrop-filter: blur(4px);
+        }
+
+        .department-table {
+            margin: 16px 0 0 0;
+        }
+
+        .department-table table {
+            margin: 0;
+            border-radius: 0;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .status-active {
+            background: rgba(40, 167, 69, 0.15);
+            color: var(--success);
+        }
+
+        .status-inactive {
+            background: rgba(108, 117, 125, 0.15);
+            color: #6C757D;
+        }
+
+        .filters {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-group label {
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 13px;
+        }
+
+        .filter-group select {
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 13px;
+            color: var(--text-primary);
+            background: var(--surface-1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-group select:hover,
+        .filter-group select:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        @media (max-width: 768px) {
+            .content-container {
+                padding: 20px;
+                margin: 20px 16px;
+            }
+
+            .content-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .header-title {
+                flex-direction: column;
+            }
+
+            .header-title h2 {
+                font-size: 24px;
+            }
+
+            .btn-add {
+                width: 100%;
+                justify-content: center;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 12px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                gap: 6px;
+            }
+
+            .btn-edit, .btn-delete, .btn-view {
+                width: 100%;
+                justify-content: center;
+                padding: 8px 12px;
+            }
+
+            .department-header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 16px;
+            }
+
+            .department-count {
+                margin-left: 0;
+                margin-top: 8px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .filters {
+                flex-direction: column;
+            }
+
+            .filter-group {
+                width: 100%;
+                flex-direction: column;
+            }
+
+            .filter-group select {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 599px) {
+            .content-container {
+                padding: 16px;
+                margin: 16px 12px;
+            }
+
+            .header-title h2 {
+                font-size: 22px;
+            }
+
+            table {
+                font-size: 11px;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+
+            .department-header {
+                font-size: 14px;
+                padding: 12px;
+            }
+
+            .department-header .material-symbols-outlined {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="menu-icon" onclick="openSidebar()" title="Open Menu">
+                <span class="material-symbols-outlined">menu</span>
+            </div>
+            <div class="header-left">
+                <span class="material-symbols-outlined" title="Search">search</span>
+            </div>
+            <div class="header-right">
+                <span class="material-symbols-outlined" title="Notifications">notifications</span>
+                <span class="material-symbols-outlined" title="Messages">mail</span>
+                <span class="material-symbols-outlined" title="Account">account_circle</span>
+            </div>
+        </header>
+
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-title">
+                <div class="sidebar-brand">
+                    <span class="material-symbols-outlined">school</span>
+                    <span>LMS</span>
+                </div>
+                <span class="material-symbols-outlined" onclick="closeSidebar()" title="Close Menu">close</span>
+            </div>
+            <ul class="sidebar-list">
+                <li class="sidebar-list-item" onclick="location.href='../../admin/index.php'">
+                    <span class="material-symbols-outlined">dashboard</span>
+                    <span>Dashboard</span>
+                </li>
+                <li class="sidebar-list-item" onclick="location.href='../students/register.html'">
+                    <span class="material-symbols-outlined">person_add</span>
+                    <span>Register Student</span>
+                </li>
+                <li class="sidebar-list-item" onclick="location.href='../students/list.html'">
+                    <span class="material-symbols-outlined">people</span>
+                    <span>View Students</span>
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-symbols-outlined">notifications_active</span>
+                    <span>Notifications</span>
+                </li>
+                <li class="sidebar-list-item" onclick="location.href='register.html'">
+                    <span class="material-symbols-outlined">badge</span>
+                    <span>Register Staff</span>
+                </li>
+                <li class="sidebar-list-item" onclick="location.href='list.html'">
+                    <span class="material-symbols-outlined">admin_panel_settings</span>
+                    <span>View Staff</span>
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-symbols-outlined">apartment</span>
+                    <span>Departments</span>
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-symbols-outlined">library_books</span>
+                    <span>Course Units</span>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-container">
+                <!-- Header Section -->
+                <div class="content-header">
+                    <div class="header-title">
+                        <span class="material-symbols-outlined">group</span>
+                        <h2>Staff Management</h2>
+                    </div>
+                    <a href="register.html" class="btn-add">
+                        <span class="material-symbols-outlined">add</span> Add New Staff
+                    </a>
+                </div>
+
+                <!-- Stats Section -->
+                <div class="staff-count">
+                    <span class="material-symbols-outlined">people</span>
+                    <span>Total Staff Members: 8</span>
+                </div>
+
+                <!-- Filters Section -->
+                <div class="filters">
+                    <div class="filter-group">
+                        <label for="filter-position">Filter by Position:</label>
+                        <select id="filter-position">
+                            <option value="">All Positions</option>
+                            <option value="Lecturer">Lecturer</option>
+                            <option value="Senior Lecturer">Senior Lecturer</option>
+                            <option value="Professor">Professor</option>
+                            <option value="Teaching Assistant">Teaching Assistant</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="filter-status">Filter by Status:</label>
+                        <select id="filter-status">
+                            <option value="">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Computer Science Department -->
+                <div class="department-section">
+                    <div class="department-header">
+                        <span class="material-symbols-outlined">computer</span>
+                        <span>Computer Science</span>
+                        <span class="department-count">2 Staff Members</span>
+                    </div>
+                    <div class="table-wrapper department-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Employee ID</th>
+                                    <th>Name</th>
+                                    <th>Position</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>STF001</td>
+                                    <td>Dr. James Wilson</td>
+                                    <td>Senior Lecturer</td>
+                                    <td>j.wilson@university.edu</td>
+                                    <td>+1 234 567 8900</td>
+                                    <td><span class="status-badge status-active">Active</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-view">
+                                                <span class="material-symbols-outlined">visibility</span> View
+                                            </button>
+                                            <button class="btn-edit">
+                                                <span class="material-symbols-outlined">edit</span> Edit
+                                            </button>
+                                            <button class="btn-delete">
+                                                <span class="material-symbols-outlined">delete</span> Delete
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>STF002</td>
+                                    <td>Prof. Sarah Chen</td>
+                                    <td>Professor</td>
+                                    <td>s.chen@university.edu</td>
+                                    <td>+1 234 567 8901</td>
+                                    <td><span class="status-badge status-active">Active</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-view">
+                                                <span class="material-symbols-outlined">visibility</span> View
+                                            </button>
+                                            <button class="btn-edit">
+                                                <span class="material-symbols-outlined">edit</span> Edit
+                                            </button>
+                                            <button class="btn-delete">
+                                                <span class="material-symbols-outlined">delete</span> Delete
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Business Department -->
+                <div class="department-section">
+                    <div class="department-header">
+                        <span class="material-symbols-outlined">trending_up</span>
+                        <span>Business</span>
+                        <span class="department-count">2 Staff Members</span>
+                    </div>
+                    <div class="table-wrapper department-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Employee ID</th>
+                                    <th>Name</th>
+                                    <th>Position</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>STF003</td>
+                                    <td>Dr. Michael Brown</td>
+                                    <td>Lecturer</td>
+                                    <td>m.brown@university.edu</td>
+                                    <td>+1 234 567 8902</td>
+                                    <td><span class="status-badge status-active">Active</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-view">
+                                                <span class="material-symbols-outlined">visibility</span> View
+                                            </button>
+                                            <button class="btn-edit">
+                                                <span class="material-symbols-outlined">edit</span> Edit
+                                            </button>
+                                            <button class="btn-delete">
+                                                <span class="material-symbols-outlined">delete</span> Delete
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>STF004</td>
+                                    <td>Emma Johnson</td>
+                                    <td>Teaching Assistant</td>
+                                    <td>e.johnson@university.edu</td>
+                                    <td>+1 234 567 8903</td>
+                                    <td><span class="status-badge status-active">Active</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-view">
+                                                <span class="material-symbols-outlined">visibility</span> View
+                                            </button>
+                                            <button class="btn-edit">
+                                                <span class="material-symbols-outlined">edit</span> Edit
+                                            </button>
+                                            <button class="btn-delete">
+                                                <span class="material-symbols-outlined">delete</span> Delete
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Engineering Department -->
+                <div class="department-section">
+                    <div class="department-header">
+                        <span class="material-symbols-outlined">construction</span>
+                        <span>Engineering</span>
+                        <span class="department-count">2 Staff Members</span>
+                    </div>
+                    <div class="table-wrapper department-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Employee ID</th>
+                                    <th>Name</th>
+                                    <th>Position</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>STF005</td>
+                                    <td>Dr. Robert Martinez</td>
+                                    <td>Senior Lecturer</td>
+                                    <td>r.martinez@university.edu</td>
+                                    <td>+1 234 567 8904</td>
+                                    <td><span class="status-badge status-active">Active</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-view">
+                                                <span class="material-symbols-outlined">visibility</span> View
+                                            </button>
+                                            <button class="btn-edit">
+                                                <span class="material-symbols-outlined">edit</span> Edit
+                                            </button>
+                                            <button class="btn-delete">
+                                                <span class="material-symbols-outlined">delete</span> Delete
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>STF006</td>
+                                    <td>Lisa Anderson</td>
+                                    <td>Lecturer</td>
+                                    <td>l.anderson@university.edu</td>
+                                    <td>+1 234 567 8905</td>
+                                    <td><span class="status-badge status-inactive">Inactive</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-view">
+                                                <span class="material-symbols-outlined">visibility</span> View
+                                            </button>
+                                            <button class="btn-edit">
+                                                <span class="material-symbols-outlined">edit</span> Edit
+                                            </button>
+                                            <button class="btn-delete">
+                                                <span class="material-symbols-outlined">delete</span> Delete
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Medicine Department -->
+                <div class="department-section">
+                    <div class="department-header">
+                        <span class="material-symbols-outlined">health_and_safety</span>
+                        <span>Medicine</span>
+                        <span class="department-count">2 Staff Members</span>
+                    </div>
+                    <div class="table-wrapper department-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Employee ID</th>
+                                    <th>Name</th>
+                                    <th>Position</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>STF007</td>
+                                    <td>Prof. David Taylor</td>
+                                    <td>Professor</td>
+                                    <td>d.taylor@university.edu</td>
+                                    <td>+1 234 567 8906</td>
+                                    <td><span class="status-badge status-active">Active</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-view">
+                                                <span class="material-symbols-outlined">visibility</span> View
+                                            </button>
+                                            <button class="btn-edit">
+                                                <span class="material-symbols-outlined">edit</span> Edit
+                                            </button>
+                                            <button class="btn-delete">
+                                                <span class="material-symbols-outlined">delete</span> Delete
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>STF008</td>
+                                    <td>Dr. Victoria Lee</td>
+                                    <td>Senior Lecturer</td>
+                                    <td>v.lee@university.edu</td>
+                                    <td>+1 234 567 8907</td>
+                                    <td><span class="status-badge status-active">Active</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-view">
+                                                <span class="material-symbols-outlined">visibility</span> View
+                                            </button>
+                                            <button class="btn-edit">
+                                                <span class="material-symbols-outlined">edit</span> Edit
+                                            </button>
+                                            <button class="btn-delete">
+                                                <span class="material-symbols-outlined">delete</span> Delete
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../../assets/js/admin.js"></script>
+</body>
+</html>

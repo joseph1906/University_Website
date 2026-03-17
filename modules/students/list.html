@@ -221,37 +221,47 @@
             </div>
         </header>
 
+        <!-- Sidebar Navigation -->
         <aside class="sidebar">
             <div class="sidebar-title">
                 <div class="sidebar-brand">
-                    <span class="material-symbols-outlined">school</span> LMS
+                    <span class="material-symbols-outlined">school</span>
+                    <span>LMS</span>
                 </div>
-                <span class="material-symbols-outlined" onclick="closeSidebar()">close</span>
+                <span class="material-symbols-outlined" onclick="closeSidebar()" title="Close Menu">close</span>
             </div>
             <ul class="sidebar-list">
                 <li class="sidebar-list-item" onclick="location.href='../../admin/index.php'">
-                    <span class="material-symbols-outlined">dashboard</span> Dashboard
+                    <span class="material-symbols-outlined">dashboard</span>
+                    <span>Dashboard</span>
                 </li>
-                <li class="sidebar-list-item" onclick="location.href='register.html'">
-                    <span class="material-symbols-outlined">people</span> Register Student
+                <li class="sidebar-list-item" onclick="location.href='../students/register.html'">
+                    <span class="material-symbols-outlined">person_add</span>
+                    <span>Register Student</span>
                 </li>
-                <li class="sidebar-list-item" onclick="location.href='list.html'">
-                    <span class="material-symbols-outlined">view_list</span> View Students
-                </li>
-                <li class="sidebar-list-item">
-                    <span class="material-symbols-outlined">notifications</span> Notifications
-                </li>
-                <li class="sidebar-list-item">
-                    <span class="material-symbols-outlined">group</span> Staff Members
+                <li class="sidebar-list-item" onclick="location.href='../students/list.html'">
+                    <span class="material-symbols-outlined">people</span>
+                    <span>View Students</span>
                 </li>
                 <li class="sidebar-list-item">
-                    <span class="material-symbols-outlined">view_list</span> View Staff Members
+                    <span class="material-symbols-outlined">notifications_active</span>
+                    <span>Notifications</span>
+                </li>
+                <li class="sidebar-list-item" onclick="location.href='../staff/register.html'">
+                    <span class="material-symbols-outlined">badge</span>
+                    <span>Register Staff</span>
+                </li>
+                <li class="sidebar-list-item" onclick="location.href='../staff/list.html'">
+                    <span class="material-symbols-outlined">admin_panel_settings</span>
+                    <span>View Staff</span>
                 </li>
                 <li class="sidebar-list-item">
-                    <span class="material-symbols-outlined">network_node</span> Departments
+                    <span class="material-symbols-outlined">apartment</span>
+                    <span>Departments</span>
                 </li>
                 <li class="sidebar-list-item">
-                    <span class="material-symbols-outlined">book</span> Courses units
+                    <span class="material-symbols-outlined">library_books</span>
+                    <span>Course Units</span>
                 </li>
             </ul>
         </aside>
