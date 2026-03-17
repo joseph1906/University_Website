@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="../lecturer/css/StudentGrade.css"/>
-        <title>Student Grade</title>
+        <link rel="stylesheet" href="../lecturer/css/Profile.css"/>
+        <title>Profile</title>
     </head>
     <body>
-    <div class="content">
-        <div class="head">
+        <div class="content">
+                  <div class="head">
                 <div class="logo"><h2>University Name</h2></div>
                 <ul>
                     <li><a href="Lecturer.php">Dashboard</a></li>
@@ -18,24 +18,29 @@
                     <li><a href="Profile.php"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABwklEQVR4AcyUSytFURiGNwZGbuUSpQzMDJQMxAy55PIHFDNTCTFQlBSFZCqK/AK3EvILJEYMDEzEzNiE5+Xb2medffbanTrl9D37/c631rfes/Y6excHBf78G4MRNnoLH4byIXJvpNnBPKscQxtUGMpPyWcgMXwG/XSvwRtMQL2hXLUNvvdAzvAZzFrnFHoIWlQoV41SkLgLn0G7VoBzcOPaCq2mseIz+LSuUtM4KYkrhjWfwb1N7DaNSnjv76JFN/cZbFrDDjoGtaCDHkdVQwIdtDQWn8EFXTrEGvQI3uEVDqAapiE8C9Ls8BmoY4tLC+zCCzyDctW2yRMjjYEWeOIyCU3QDMpVI02OJINKWldAt0m35os8imoaW6ZeBrGRy2CQ2Y+wCH2gw0UyQjWNLVHV3F40K+IM9BLTg1XH7BPQw1aFFjmoprEz6g1wCQOQEa6BmvZsxjo6Cnpz6i1KmhGqaWyYavh33icvh79wDfQS0y+/YcYCpI05Jl5B+IyQ/oZr0PlbDlZN04oOP9xFV7TJNeiwQW3d0tTyYDMTDRptku6vpalFT7gmh2soD9wdhP+Un8E8Lln9rkEeaya3FNzgGwAA///0Oi4FAAAABklEQVQDAPDsRjFnAby0AAAAAElFTkSuQmCC"/></a></li>
                 </div>
         </div>
-        <div class="Student">
-    <table>
-        <thead>
-            <tr>
-                <th colspan="5" class="student">Student Grade</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><img src="1.jpg" alt="" class="image"></td>
-                <td>Reg_Number</td>
-                <td>Student Name</td>
-                <td>Task Number One</td>
-                <td>Task Number Two</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-    </div>
+        <div class="Profile">
+            <div class="ProfileIn">
+            <div class="image">
+                <img src="1.jpg" alt="">
+            </div>
+            <div class="info">
+                <table>
+                    <tr>
+                        <td>Name:</td>
+                        <td>Lecturer Name</td>
+                    </tr>
+                    <tr>
+                        <td>Last Name:</td>
+                        <td>Lecturer LastName</td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td>Lecturer Email</td>
+                    </tr>
+                </table>
+            </div>
+            </div>
+        </div>
+        </div>
     </body>
 </html>
